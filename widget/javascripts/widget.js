@@ -22,23 +22,44 @@ var KoleoWidget = {
         $('#koleo-widget').on('submit', function(event) {
             event.preventDefault();
 
-            var startStation = that.parameterize($('#start_station').val());
-            var endStation = that.parameterize($('#end_station').val());
-            var formattedDate = that.formatDate($('#date').val());
-            var date = new Date(formattedDate);
+            that.validateForm(function () {
+                var startStation = that.parameterize($('#start_station').val());
+                var endStation = that.parameterize($('#end_station').val());
+                var formattedDate = that.formatDate($('#date').val());
+                var date = new Date(formattedDate);
 
-            if (isNaN(date.valueOf())) {
-                date = new Date();
-            }
+                if (isNaN(date.valueOf())) {
+                    date = new Date();
+                }
 
-            var day = ('0' + date.getDate()).slice(-2);
-            var month = ('0' + (date.getMonth() + 1)).slice(-2);
-            var year = date.getFullYear();
-            var hour = ('0' + date.getUTCHours()).slice(-2);
+                var day = ('0' + date.getDate()).slice(-2);
+                var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                var year = date.getFullYear();
+                var hour = ('0' + date.getUTCHours()).slice(-2);
 
-            var koleoDate = day + '-' + month + '-' + year + '_' + hour + ':00';
-            window.location = 'https://koleo.pl/search/' + startStation + '/' + endStation + '/' + koleoDate + '?utm_medium=widget&utm_source=' + window.location.hostname;
+                var koleoDate = day + '-' + month + '-' + year + '_' + hour + ':00';
+                window.location = 'https://koleo.pl/search/' + startStation + '/' + endStation + '/' + koleoDate + '?utm_medium=widget&utm_source=' + window.location.hostname;
+            });
         });
+    },
+
+    validateForm: function(callback) {
+        var that = this;
+        that.stationExists($('#start_station'), function() {
+            that.stationExists($('#end_station'), callback);
+        });
+    },
+
+    stationExists: function(element, nextValidation) {
+        this.getData(element.val(), null, function(stations) {
+            if (stations.filter(function(s) {
+                    return s.name.toLowerCase() === element.val().toLowerCase();
+                }).length === 1) {
+                nextValidation();
+            } else {
+                element.focus();
+            }
+        })
     },
 
     insertWidget: function(selector) {
