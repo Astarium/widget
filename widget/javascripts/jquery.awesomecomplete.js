@@ -233,7 +233,7 @@
                 if (matchedTerms[j] === true)
                     matchedTermCount++;
 
-            if (matchCount > 0)
+            if (matchCount > 0) {
                 results.push({
                     dataItem: dataItem,
                     originalDataItem: data[item],
@@ -241,6 +241,15 @@
                     topMatch: topMatch,
                     matchedTermCount: matchedTermCount
                 });
+            } else if (typeof config.dataMethod === 'function') { // accept all propositions given by dataMethod
+                results.push({
+                    dataItem: dataItem,
+                    originalDataItem: data[item],
+                    matchCount: 0,
+                    topMatch: null,
+                    matchedTermCount: 0
+                });
+            }
         }
 
         results.sort(function (a, b) {
