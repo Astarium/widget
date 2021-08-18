@@ -45,4 +45,5 @@ ARRIVARP-EIC-EIP-IC-IR-REG-KM-KML-KS-KW-LKA-LS-MR-RE-SKMT-SKM-TLK-WKD-KD
 
 # Licencja
 
-Copyright © 2015-2018 Astarium. Wszelkie prawa zastrzeżone. 
+Wykorzystanie widgetu na stronie wymaga pisemnej zgody KOLEO, zgłoszenie proszę wysłać na adres: widget@koleo.pl
+Copyright © 2015-2020 Astarium. Wszelkie prawa zastrzeżone. 
