@@ -26,4 +26,4 @@ el.onload = function(script){
 
 # Licencja
 
-Copyright © 2015-2019 Astarium. Wszelkie prawa zastrzeżone. 
+Copyright © 2015-2021 Astarium. Wszelkie prawa zastrzeżone. 
