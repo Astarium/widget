@@ -76,7 +76,7 @@ var KoleoWidget = {
         if (no_text !== true) {
             html = "";
         }
-        html += '<form class="koleo-widget"><div class="flex-item"><input class="start_station" name="start_station" type="text" placeholder="Stacja Odjazdu" autocomplete="off"></div><div class="flex-item"><input class="end_station" name="end_station" type="text" placeholder="Stacja Przyjazdu" autocomplete="off"></div><div class="flex-item"><input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off"></div><div class="flex-item"><input class="submit" type="submit" value="Kup bilet"></div></form>'
+        html += '<form class="koleo-widget"><div class="flex-item"><input class="start_station" name="start_station" type="text" placeholder="Stacja Odjazdu" aria-label="Stacja Odjazdu" autocomplete="off"></div><div class="flex-item"><input class="end_station" aria-label="Stacja Docelowa" name="end_station" type="text" placeholder="Stacja Przyjazdu" autocomplete="off"></div><div class="flex-item"><input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off" aria-label="Data połączenia" ></div><div class="flex-item"><input class="submit" type="submit" value="Kup bilet" aria-label="Kup bilet"></div></form>'
         var container = $(selector);
         var that = this;
         container.append(html);
