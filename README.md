@@ -10,6 +10,13 @@ Wersja uproszczona: umieść poniższy fragment w wybranym miejscu w pliku HTML.
 <div class="koleo-widget-container"></div>
 <script src="https://ssbo_widget.koleo.pl/widget/javascripts/load-widget-simple.js"></script>
 ```
+
+Wersja minify:
+```
+<div class="koleo-widget-container"></div>
+<script src="https://ssbo_widget.koleo.pl/widget/javascripts/load-widget-simple.min.js"></script>
+```
+
 [Przykładowe użycie](https://widget.koleo.pl/ssbo/example_embed_simple.html)
 
 Alternatywnie: Umieść następujący skrypt uzupełniając argument `selektor` odpowiednią wartością, wskazującą na istniejący element HTML.
@@ -21,6 +28,17 @@ el.onload = function(script){
     KoleoWidgetLoader.loadWidget(selektor);
 };
 ```
+
+wersja minify:
+```
+var el = document.createElement('script');
+document.head.appendChild(el);
+el.src = 'https://koleo.pl/ssbo/widget/javascripts/load-widget.min.js';
+el.onload = function(script){
+    KoleoWidgetLoader.loadWidget(selektor);
+};
+```
+
 
 [Przykładowe użycie](https://widget.koleo.pl/ssbo/example_embed.html)
 
