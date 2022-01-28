@@ -1,9 +1,9 @@
 KoleoWidgetLoader = {
   loadWidget: function(selector) {
     var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
-                       "//widget.bilety.polregio.pl/widget/javascripts/foundation-datepicker.js",
-                       "//widget.bilety.polregio.pl/widget/javascripts/jquery.awesomecomplete.js",
-                       "//widget.bilety.polregio.pl/widget/javascripts/widget.js"];
+                       "//widget.polregio.pl/widget/javascripts/foundation-datepicker.js",
+                       "//widget.polregio.pl/widget/javascripts/jquery.awesomecomplete.js",
+                       "//widget.polregio.pl/widget/javascripts/widget.js"];
     this.loadScripts(scriptPaths, selector);
   },
 
