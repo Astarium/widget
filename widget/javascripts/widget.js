@@ -6,8 +6,8 @@ var KoleoWidget = {
     MULTI_WHITESPACE_REGEXP:   (/\s+/g),
     POLISH_CHARS:              [/[ąĄ]/g, /[ćĆ]/g, /[ęĘ]/g, /[łŁ]/g, /[ńŃ]/g, /[óÓ]/g, /[śŚ]/g, /[żŻ]/g, /[źŹ]/g],
     POLISH_CHAR_REPLACEMNETS:  ['a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z'],
-    SEPARATOR:                 '-', 
-    SPACE:                     ' ', 
+    SEPARATOR:                 '-',
+    SPACE:                     ' ',
     EMPTY:                     '',
     TYPE_UNDEFINED:            'undefined',
 
@@ -27,7 +27,7 @@ var KoleoWidget = {
         this.insertWidget(selector);
         this.addStyles();
         this.bindDatePicker(selector);
-        this.showLiveSearch(selector);
+        this.initCustomSelect(selector);
 
         $(selector).find('form.koleo-widget').on('submit', function(event) {
             event.preventDefault();
@@ -48,8 +48,7 @@ var KoleoWidget = {
 
             var koleoDate = day + '-' + month + '-' + year + '_' + hour + ':00';
 
-            var brands = $(selector).data('brands');
-            var selectedCarriers = 'all/' + (brands ? brands + '--' + brands : 'all') + '/closed';
+            var selectedCarriers = 'all/' + 'KD' + '/closed';
             window.location = 'https://koleo.pl/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '/'+ selectedCarriers + '?utm_medium=widget&utm_source=' + window.location.hostname;
         });
     },
@@ -60,7 +59,32 @@ var KoleoWidget = {
         if (no_text !== true) {
             html = '<a href="https://koleo.pl?utm_medium=widget&utm_source=' + window.location.hostname + '" title="KOLEO - rozkład jazdy i ceny biletów">Rozkład jazdy dostarcza <img src="https://koleo.pl/assets/logo.png"></a>';
         }
-        html += '<form class="koleo-widget"><div class="flex-item"><input class="start_station" name="start_station" type="text" placeholder="Z" autocomplete="off"></div><div class="flex-item"><input class="end_station" name="end_station" type="text" placeholder="DO" autocomplete="off"></div><div class="flex-item"><input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off"></div><div class="flex-item"><input class="submit" type="submit" value="Znajdź połączenie i kup bilet!"></div></form>'
+        html += `<form class="koleo-widget">
+        <div class="flex-item"><select class="start_station" name="start_station" autocomplete="off">
+                <option value="wroclaw-glowny" selected>WROCŁAW GŁÓWNY</option>
+                <option value="legnica">LEGNICA</option>
+                <option value="lubin">LUBIN</option>
+                <option value="glogow">GŁOGÓW</option>
+                <option value="zielona-gora-glowna">ZIELONA GÓRA GŁÓWNA</option>
+                <option value="szczecin-dabie">SZCZECIN DĄBIE</option>
+                <option value="miedzyzdroje">MIĘDZYZDROJE</option>
+                <option value="swinoujscie">ŚWINOUJŚCIE</option>
+            </select>
+        </div>
+        <div class="flex-item"><select class="end_station" name="end_station" autocomplete="off">
+            <option value="wroclaw-glowny">WROCŁAW GŁÓWNY</option>
+            <option value="legnica">LEGNICA</option>
+            <option value="lubin">LUBIN</option>
+            <option value="glogow">GŁOGÓW</option>
+            <option value="zielona-gora-glowna">ZIELONA GÓRA GŁÓWNA</option>
+            <option value="szczecin-dabie">SZCZECIN DĄBIE</option>
+            <option value="miedzyzdroje">MIĘDZYZDROJE</option>
+            <option value="swinoujscie" selected>ŚWINOUJŚCIE</option>
+            </select>
+        </div>
+        <div class="flex-item"><input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off"></div>
+        <div class="flex-item"><input class="submit" type="submit" value="Znajdź połączenie i kup bilet!"></div>
+    </form>`
         var container = $(selector);
         var that = this;
         container.append(html);
@@ -72,10 +96,14 @@ var KoleoWidget = {
     },
 
     addStyles: function() {
-        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/widget.css" });
-        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/autocomplete.css" });
-        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/awesomecomplete.css" });
-        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/foundation-datepicker.css" });
+        // var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/widget.css" });
+        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/widget.css" });
+        // var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/customA11ySelect.css" });
+        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/customA11ySelect.css" });
+        // var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/autocomplete.css" });
+        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/autocomplete.css" });
+        // var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/foundation-datepicker.css" });
+        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/foundation-datepicker.css" });
         var cssLink5 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family=Lato" });
 
         cssLink.appendTo('head');
@@ -85,19 +113,8 @@ var KoleoWidget = {
         cssLink5.appendTo('head');
     },
 
-    showLiveSearch: function(selector) {
-        $(selector).find('.start_station, .end_station').awesomecomplete({
-            noResultsMessage: 'Nie ma takiej stacji.',
-            dataMethod: this.getData,
-            valueFunction: function(dataItem) {
-                return dataItem.name;
-            },
-            renderFunction: function(dataItem) {
-                return '<p class="title">' + dataItem.name + '</p>';
-            },
-            highlightMatches: false,
-            typingDelay: 200
-        });
+    initCustomSelect: function(selector) {
+        $(selector).find('.start_station, .end_station').customA11ySelect();
     },
 
     getData: function(term, $awesomecomplete, onData) {
@@ -165,7 +182,7 @@ var KoleoWidget = {
 
         return string.replace(this.SPECIAL_CHAR_REGEXP, this.SEPARATOR)    // replace underscores, slashes and spaces with separator
                      .replace(this.MULTI_SEPARATOR_REGEXP, this.SEPARATOR) // replace multiple occurring separators
-                     .replace(this.TRIM_SEPARATOR_REGEXP, this.EMPTY)      // trim leading and trailing separators 
+                     .replace(this.TRIM_SEPARATOR_REGEXP, this.EMPTY)      // trim leading and trailing separators
                      .replace('.', this.SEPARATOR)                    // replace dots with separator
                      .toLowerCase();                             // convert to lowercase
 

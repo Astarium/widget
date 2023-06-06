@@ -44,7 +44,8 @@
   margin: 0;
 }
 
-.koleo-widget-container .flex-item input[type="text"] {
+.koleo-widget-container .flex-item input[type="text"],
+.koleo-widget-container .custom-a11yselect-container .custom-a11yselect-btn {
   height: 46px;
   padding-left: 40px;
   font-size: 0.8125rem;
@@ -53,7 +54,11 @@
   margin: 0;
 }
 
-.koleo-widget-container .flex-item input[type="text"], .koleo-widget-container .flex-item input[type="text"]:focus, .koleo-widget-container .flex-item input[type="submit"] {
+.koleo-widget-container .flex-item input[type="text"],
+.koleo-widget-container .custom-a11yselect-container .custom-a11yselect-btn,
+.koleo-widget-container .flex-item input[type="text"]:focus,
+.koleo-widget-container .custom-a11yselect-container .custom-a11yselect-btn:focus,
+.koleo-widget-container .flex-item input[type="submit"] {
 	box-shadow: none;
 	background-repeat: no-repeat;
 	text-transform: uppercase;
@@ -68,25 +73,34 @@
   border: none;
   width: 100%;
   margin: 0;
+  border-radius: 5px;
 }
 
 .koleo-widget-container .flex-item input[type="submit"]:hover {
   cursor: pointer;
 }
 
-.koleo-widget-container .start_station {
+.koleo-widget-container .start_station,
+.koleo-widget-container .flex-item:nth-child(1) .custom-a11yselect-btn {
   background-image: url("../images/from.svg");
 }
 
-.koleo-widget-container .end_station {
+.koleo-widget-container .end_station,
+    .koleo-widget-container .flex-item:nth-child(2) .custom-a11yselect-btn {
   background-image: url("../images/to.svg");
 }
 
 .koleo-widget-container .date {
   background-image: url("../images/date.svg");
+  border-radius: 5px;
+  border-width: 0;
 }
 
-.koleo-widget-container .start_station, .koleo-widget-container .end_station, .koleo-widget-container .date, .koleo-widget-container .submit {
+.koleo-widget-container .custom-a11yselect-btn,
+.koleo-widget-container .start_station,
+.koleo-widget-container .end_station,
+.koleo-widget-container .date,
+.koleo-widget-container .submit {
   background-repeat: no-repeat;
   background-position: 10px 50%;
   background-size: 15px;

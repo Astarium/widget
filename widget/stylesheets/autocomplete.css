@@ -1,5 +1,4 @@
 div ul.autocomplete {
-  border: solid 1px #d8d8d8;
   padding: 0;
   min-height: 0;
   width: 100%;
@@ -11,13 +10,13 @@ div ul.autocomplete li {
   text-transform: uppercase;
 }
 
-div ul.autocomplete li p.title, div ul.autocomplete li p { 
+div ul.autocomplete li p.title, div ul.autocomplete li p {
   font-size: 0.8rem;
-  font-weight: normal; 
+  font-weight: normal;
   margin-left: 30px;
   padding: 5px;
 }
-  
+
 div ul.autocomplete span {
   text-decoration: none;
   font-weight: normal;
@@ -52,9 +51,8 @@ div ul.autocomplete li.noResults {
 
 .datepicker.datepicker-dropdown.koleo-widget-dropdown-menu {
   height: 230px;
-  border-radius: 0;
-  border-color: #d8d8d8;
-  box-shadow: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
   font-family: "Lato", Helvetica, Arial, sans-serif;
 }
 
@@ -70,7 +68,7 @@ div ul.autocomplete li.noResults {
 
 .datepicker.datepicker-dropdown.koleo-widget-dropdown-menu td.disabled, .datepicker.datepicker-dropdown.koleo-widget-dropdown-menu td.new, .datepicker.datepicker-dropdown.koleo-widget-dropdown-menu td span.disabled, .datepicker.datepicker-dropdown.koleo-widget-dropdown-menu td span.new {
   color: #d8d8d8;
-}    
+}
 
 .datepicker.datepicker-dropdown.koleo-widget-dropdown-menu .datepicker-hours table tr td span {
   height: 26px;

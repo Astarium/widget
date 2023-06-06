@@ -26,7 +26,7 @@ el.onload = function(script){
 
 # Ograniecznie wyszukiwania do konkretnych marek handlowych
 
-Aby ograniczyć wyszukiwanie do konkretnych marek handlowych należy dodać atrubyt `data-brands`, zawierające rozdzieloną dywizem `-` listę marek. 
+Aby ograniczyć wyszukiwanie do konkretnych marek handlowych należy dodać atrubyt `data-brands`, zawierające rozdzieloną dywizem `-` listę marek.
 
 Przykład dla wyłącznie pociągów KD:
 ```
@@ -40,10 +40,10 @@ Wyłącznie pociągi KD i REGIO:
 
 Dostępne wartości to:
 ```
-ARRIVARP-EIC-EIP-IC-IR-REG-KM-KML-KS-KW-LKA-LS-MR-RE-SKMT-SKM-TLK-WKD-KD
+ARRIVARP-EIC-EIP-IC-IR-REG-KM-KML-KS-KW-LKA-LS-MR-RE-SKMT-SKM-TLK-WKD-KD-KDP
 ```
 
 # Licencja
 
 Wykorzystanie widgetu na stronie wymaga pisemnej zgody KOLEO, zgłoszenie proszę wysłać na adres: widget@koleo.pl
-Copyright © 2015-2020 Astarium. Wszelkie prawa zastrzeżone. 
+Copyright © 2015-2020 Astarium. Wszelkie prawa zastrzeżone.
