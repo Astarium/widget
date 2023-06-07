@@ -83,7 +83,7 @@ var KoleoWidget = {
             </select>
         </div>
         <div class="flex-item"><input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off"></div>
-        <div class="flex-item"><input class="submit" type="submit" value="Znajdź połączenie i kup bilet!"></div>
+        <div class="flex-item"><input class="submit" type="submit" value="Kup bilet"></div>
     </form>`
         var container = $(selector);
         var that = this;
