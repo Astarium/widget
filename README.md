@@ -2,7 +2,7 @@
 
 Widget KOLEO, to prosty sposób, by dodać [wyszukiwarkę rozkładu jazdy z cenami pociągów](https://koleo.pl) na swoją stronę.
 
-[Podgląd widgetu](https://widget.koleo.pl/kdp)
+[Podgląd widgetu](https://widget.koleo.pl/kdp/index.html)
 
 # Aby umieścić widget na stronie
 Wersja uproszczona: umieść poniższy fragment w wybranym miejscu w pliku HTML.
