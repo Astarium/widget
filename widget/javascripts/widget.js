@@ -97,12 +97,12 @@ var KoleoWidget = {
 
     addStyles: function() {
         // var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/widget.css" });
-        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/widget.css" });
-        // var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/customA11ySelect.css" });
-        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/customA11ySelect.css" });
         // var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/autocomplete.css" });
-        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/autocomplete.css" });
+        // var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/customA11ySelect.css" });
         // var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: "/widget/stylesheets/foundation-datepicker.css" });
+        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/widget.css" });
+        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/autocomplete.css" });
+        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/customA11ySelect.css" });
         var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/kdp/widget/stylesheets/foundation-datepicker.css" });
         var cssLink5 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family=Lato" });
 

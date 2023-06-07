@@ -3,11 +3,11 @@
     <meta charset="UTF-8">
   </head>
   <body>
-    <div id="koleo-widget-container" data-brands="SKMT-REG" class="koleo-widget-container"></div>
+    <div id="koleo-widget-container" class="koleo-widget-container"></div>
     <script>
       var el = document.createElement('script');
       document.head.appendChild(el);
-      el.src = 'https://widget.koleo.pl/widget/javascripts/load-widget.js';
+      el.src = 'https://widget.koleo.pl/kdp/widget/javascripts/load-widget.js';
       el.onload = function(){
           KoleoWidgetLoader.loadWidget(document.getElementsByClassName('koleo-widget-container'));
       };

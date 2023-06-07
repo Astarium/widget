@@ -386,8 +386,8 @@
             if (arguments && arguments.length && (typeof arguments[0] === 'string' || arguments[0] instanceof Date)) {
                 date = arguments[0];
                 fromArgs = true;
-            } 
-            else if (!currentVal && this.initialDate != null) { // If value is not set, set it to the initialDate 
+            }
+            else if (!currentVal && this.initialDate != null) { // If value is not set, set it to the initialDate
                 date = this.initialDate
             }
             else {
@@ -1096,7 +1096,7 @@
 			daysMin: ["Nd", "Pn", "Wt", "Śr", "Czw", "Pt", "Sob", "Nd"],
 			months: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
 			monthsShort: ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"],
-			today: "Dzisiaj" 
+			today: "Dzisiaj"
 		}
     };
 
@@ -1316,9 +1316,9 @@
         },
         headTemplate: '<thead>' +
             '<tr>'+
-                '<th class="prev"><img src="https://widget.koleo.pl/widget/images/arrow_left.svg"/></th>'+
+                '<th class="prev"><img src="https://widget.koleo.pl/kdp/widget/images/arrow_left.svg"/></th>'+
                 '<th colspan="5" class="switch"></th>'+
-                '<th class="next"><img src="https://widget.koleo.pl/widget/images/arrow_right.svg"/></th>'+
+                '<th class="next"><img src="https://widget.koleo.pl/kdp/widget/images/arrow_right.svg"/></th>'+
             '</tr>'+
             '</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
