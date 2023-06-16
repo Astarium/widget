@@ -151,10 +151,11 @@ var KoleoWidget = {
 
         dateInput.fdatepicker({
             initialDate: initialDate,
-            format: 'dd-mm-yyyy hh:ii',
+            format: 'dd-mm-yyyy',
             language: 'pl',
             weekStart: 1,
-            minView: 1,
+            minView: 'month',
+            minView: 'month',
             startDate: startDate,
             endDate: endDate
         });
@@ -164,7 +165,7 @@ var KoleoWidget = {
         var day = foundationFormatDate.substr(0, 2);
         var month = foundationFormatDate.substr(3, 2);
         var year = foundationFormatDate.split(' ')[0].split('-').pop();
-        var hour = foundationFormatDate.split(' ').pop();
+        var hour = '05:00';
         return year + '-' + month + '-' + day  + 'T' + hour + '+00:00';
     },
 
