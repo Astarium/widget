@@ -146,18 +146,38 @@ var KoleoWidget = {
 
         var startDate = new Date(year, month, day - 1, hour);
         var initialDate = new Date(year, month, day, hour);
-        var endDate = new Date(startDate);
-        endDate.setDate(endDate.getDate() + 90);
+        var endDate = new Date(2023, 7, 27, 23);
+
+        var workdays = (function(start, end) {
+            for(var arr=[],dt=new Date(start); dt<=new Date(end); dt.setDate(dt.getDate()+1)){
+                var d = new Date(dt)
+
+                if (d.getDay() === 0 || d.getDay() === 6 || (d.getDate() === 15 && d.getMonth() === 7)) {
+                    continue;
+                }
+                arr.push(new Date(dt));
+            }
+            return arr;
+        })(startDate, endDate);
+
+        function nearestWeekendFrom(date) {
+            if (date.getMonth() === 7 && (date.getDate() === 14 || date.getDate() === 15)) {
+                return new Date(date.getFullYear(), 7, 15);
+            } else {
+                return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (date.getDay() === 0 ? 0 : 6 - date.getDay()))
+            }
+        }
 
         dateInput.fdatepicker({
-            initialDate: initialDate,
+            initialDate: nearestWeekendFrom(initialDate),
             format: 'dd-mm-yyyy',
             language: 'pl',
             weekStart: 1,
             minView: 'month',
             minView: 'month',
-            startDate: startDate,
-            endDate: endDate
+            startDate: nearestWeekendFrom(startDate),
+            endDate: endDate,
+            datesDisabled: workdays.map(d => `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`),
         });
     },
 
