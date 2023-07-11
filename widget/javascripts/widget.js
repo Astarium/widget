@@ -6,8 +6,8 @@ var KoleoWidget = {
     MULTI_WHITESPACE_REGEXP:   (/\s+/g),
     POLISH_CHARS:              [/[ąĄ]/g, /[ćĆ]/g, /[ęĘ]/g, /[łŁ]/g, /[ńŃ]/g, /[óÓ]/g, /[śŚ]/g, /[żŻ]/g, /[źŹ]/g],
     POLISH_CHAR_REPLACEMNETS:  ['a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z'],
-    SEPARATOR:                 '-', 
-    SPACE:                     ' ', 
+    SEPARATOR:                 '-',
+    SPACE:                     ' ',
     EMPTY:                     '',
     TYPE_UNDEFINED:            'undefined',
 
@@ -50,7 +50,7 @@ var KoleoWidget = {
 
             var brands = $(selector).data('brands');
             var selectedCarriers = 'all/' + (brands ? brands + '--' + brands : 'all') + '/closed';
-            window.location = 'https://koleo.pl/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '/'+ selectedCarriers + '?utm_medium=widget&utm_source=' + window.location.hostname;
+            window.location = 'https://koleo.pl/en/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '/'+ selectedCarriers + '?utm_medium=widget&utm_source=' + window.location.hostname;
         });
     },
 
@@ -58,9 +58,9 @@ var KoleoWidget = {
         var html = ""
         var no_text = $(selector).data('no-text');
         if (no_text !== true) {
-            html = '<a href="https://koleo.pl?utm_medium=widget&utm_source=' + window.location.hostname + '" title="KOLEO - rozkład jazdy i ceny biletów">Rozkład jazdy dostarcza <img src="https://koleo.pl/assets/logo.png"></a>';
+            html = '<a href="https://koleo.pl?utm_medium=widget&utm_source=' + window.location.hostname + '" title="KOLEO - timetables and tickets">Timetable brought by <img src="https://koleo.pl/assets/logo.png" alt="KOLEO"></a>';
         }
-        html += '<form class="koleo-widget"><div class="flex-item"><input class="start_station" name="start_station" type="text" placeholder="Z" autocomplete="off"></div><div class="flex-item"><input class="end_station" name="end_station" type="text" placeholder="DO" autocomplete="off"></div><div class="flex-item"><input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off"></div><div class="flex-item"><input class="submit" type="submit" value="Znajdź połączenie i kup bilet!"></div></form>'
+        html += '<form class="koleo-widget"><div class="flex-item"><input class="start_station" name="start_station" type="text" placeholder="FROM" autocomplete="off"></div><div class="flex-item"><input class="end_station" name="end_station" type="text" placeholder="TO" autocomplete="off"></div><div class="flex-item"><input class="date" name="date" type="text" placeholder="WHEN" autocomplete="off"></div><div class="flex-item"><input class="submit" type="submit" value="Find connection and buy ticket!"></div></form>'
         var container = $(selector);
         var that = this;
         container.append(html);
@@ -87,7 +87,7 @@ var KoleoWidget = {
 
     showLiveSearch: function(selector) {
         $(selector).find('.start_station, .end_station').awesomecomplete({
-            noResultsMessage: 'Nie ma takiej stacji.',
+            noResultsMessage: 'Station not found.',
             dataMethod: this.getData,
             valueFunction: function(dataItem) {
                 return dataItem.name;
@@ -135,7 +135,7 @@ var KoleoWidget = {
         dateInput.fdatepicker({
             initialDate: initialDate,
             format: 'dd-mm-yyyy hh:ii',
-            language: 'pl',
+            language: 'en',
             weekStart: 1,
             minView: 1,
             startDate: startDate,
@@ -165,7 +165,7 @@ var KoleoWidget = {
 
         return string.replace(this.SPECIAL_CHAR_REGEXP, this.SEPARATOR)    // replace underscores, slashes and spaces with separator
                      .replace(this.MULTI_SEPARATOR_REGEXP, this.SEPARATOR) // replace multiple occurring separators
-                     .replace(this.TRIM_SEPARATOR_REGEXP, this.EMPTY)      // trim leading and trailing separators 
+                     .replace(this.TRIM_SEPARATOR_REGEXP, this.EMPTY)      // trim leading and trailing separators
                      .replace('.', this.SEPARATOR)                    // replace dots with separator
                      .toLowerCase();                             // convert to lowercase
 
