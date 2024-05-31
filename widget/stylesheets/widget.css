@@ -46,11 +46,18 @@
 
 .koleo-widget-container .flex-item input[type="text"] {
   height: 46px;
+  margin: 0;
   padding-left: 40px;
   font-size: 0.8125rem;
   text-transform: uppercase;
   color: #293373;
-  margin: 0;
+  border: none;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.koleo-widget-container .flex-item input[type="text"]:disabled {
+  opacity: 0.8;
 }
 
 .koleo-widget-container .flex-item input[type="text"], .koleo-widget-container .flex-item input[type="text"]:focus, .koleo-widget-container .flex-item input[type="submit"] {
