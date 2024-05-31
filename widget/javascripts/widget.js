@@ -11,6 +11,9 @@ var KoleoWidget = {
     EMPTY:                     '',
     TYPE_UNDEFINED:            'undefined',
 
+    startStation: undefined,
+    endStation: undefined,
+
     initAll: function(selector) {
         var that = this;
         $(selector).each(function() {
@@ -24,6 +27,7 @@ var KoleoWidget = {
     init: function(selector) {
         var that = this;
 
+        this.initDataParams(selector);
         this.insertWidget(selector);
         this.addStyles();
         this.bindDatePicker(selector);
@@ -54,28 +58,50 @@ var KoleoWidget = {
         });
     },
 
+    initDataParams: function(selector) {
+        this.startStation = $(selector).data('start');
+        this.endStation = $(selector).data('end');
+    },
+
     insertWidget: function(selector) {
-        var html = ""
-        var no_text = $(selector).data('no-text');
-        if (no_text !== true) {
-            html = '<a href="https://koleo.pl?utm_medium=widget&utm_source=' + window.location.hostname + '" title="KOLEO - rozkład jazdy i ceny biletów">Rozkład jazdy dostarcza <img src="https://koleo.pl/assets/logo.png"></a>';
-        }
-        html += '<form class="koleo-widget"><div class="flex-item"><input class="start_station" name="start_station" type="text" placeholder="Z" autocomplete="off"></div><div class="flex-item"><input class="end_station" name="end_station" type="text" placeholder="DO" autocomplete="off"></div><div class="flex-item"><input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off"></div><div class="flex-item"><input class="submit" type="submit" value="Znajdź połączenie i kup bilet!"></div></form>'
-        var container = $(selector);
-        var that = this;
+        const no_text = $(selector).data('no-text');
+        const html = `
+            ${no_text !== true
+                ? `<a href="https://koleo.pl?utm_medium=widget&utm_source=${window.location.hostname}" title="KOLEO - rozkład jazdy i ceny biletów">Rozkład jazdy dostarcza <img src="https://koleo.pl/assets/logo.png"></a>`
+                : ''
+            }
+            <form class="koleo-widget">
+                <div class="flex-item">
+                    <input class="start_station" name="start_station" type="text" placeholder="Z" autocomplete="off" ${this.startStation ? 'disabled' : ''}>
+                </div>
+                <div class="flex-item">
+                    <input class="end_station" name="end_station" type="text" placeholder="DO" autocomplete="off" ${this.endStation ? 'disabled' : ''}>
+                </div>
+                <div class="flex-item">
+                    <input class="date" name="date" type="text" placeholder="KIEDY" autocomplete="off">
+                </div>
+                <div class="flex-item">
+                    <input class="submit" type="submit" value="Znajdź połączenie i kup bilet!">
+                </div>
+            </form>`
+
+        const container = $(selector);
         container.append(html);
 
-        that.resizeContainer(container);
-        $(window).resize(function() {
-            that.resizeContainer(container);
+        if (this.startStation) $('input.start_station').val(this.startStation)
+        if (this.endStation) $('input.end_station').val(this.endStation)
+
+        this.resizeContainer(container);
+        $(window).resize(() => {
+            this.resizeContainer(container);
         });
     },
 
     addStyles: function() {
-        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/widget.css" });
-        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/autocomplete.css" });
-        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/awesomecomplete.css" });
-        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://widget.koleo.pl/widget/stylesheets/foundation-datepicker.css" });
+        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/widget.css` });
+        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/autocomplete.css` });
+        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/awesomecomplete.css` });
+        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/foundation-datepicker.css` });
         var cssLink5 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family=Lato" });
 
         cssLink.appendTo('head');
