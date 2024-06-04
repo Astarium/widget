@@ -5,9 +5,9 @@ window.KOLEO_BASE_URL = KOLEO_IS_DEV ? '' : '//widget.koleo.pl'
 KoleoWidgetLoader = {
   loadWidget: function(selector) {
     var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
-                       `${KOLEO_BASE_URL}/widget/javascripts/foundation-datepicker.js`,
-                       `${KOLEO_BASE_URL}/widget/javascripts/jquery.awesomecomplete.js`,
-                       `${KOLEO_BASE_URL}/widget/javascripts/widget.js`];
+                       `${window.KOLEO_BASE_URL}/widget/javascripts/foundation-datepicker.js`,
+                       `${window.KOLEO_BASE_URL}/widget/javascripts/jquery.awesomecomplete.js`,
+                       `${window.KOLEO_BASE_URL}/widget/javascripts/widget.js`];
     this.loadScripts(scriptPaths, selector);
   },
 
