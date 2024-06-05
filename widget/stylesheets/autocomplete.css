@@ -12,12 +12,12 @@ div ul.autocomplete li {
 }
 
 div ul.autocomplete li p.title, div ul.autocomplete li p { 
-  font-size: 0.8rem;
+  font-size: 13px;
   font-weight: normal; 
   margin-left: 30px;
   padding: 5px;
 }
-  
+
 div ul.autocomplete span {
   text-decoration: none;
   font-weight: normal;
@@ -31,13 +31,13 @@ div ul.autocomplete li.active:not(.noResults) {
 
 div ul.autocomplete li:not(.noResults) {
   background-image: url("../images/arrow_right.svg");
-  background-position: 6% 50%;
+  background-position: 15px 50%;
   background-size: 10px;
   background-repeat: no-repeat;
 }
 
 div ul.autocomplete li.noResults {
-  font-size: 0.8rem;
+  font-size: 13px;
   margin-left: 30px;
 }
 

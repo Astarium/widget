@@ -98,10 +98,10 @@ var KoleoWidget = {
     },
 
     addStyles: function() {
-        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/widget.css` });
-        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/autocomplete.css` });
-        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/awesomecomplete.css` });
-        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/foundation-datepicker.css` });
+        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/widget.css` });
+        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/autocomplete.css` });
+        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/awesomecomplete.css` });
+        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/foundation-datepicker.css` });
         var cssLink5 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family=Lato" });
 
         cssLink.appendTo('head');
