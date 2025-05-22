@@ -144,9 +144,9 @@ var KoleoWidget = {
         var day = today.getDate();
         var hour = today.getHours();
 
-        var startDate = new Date(year, 5 , 22 - 1, hour);
-        var initialDate = new Date(year, 5, 22, hour);
-        var endDate = new Date(2024, 8, 1, 23);
+        var startDate = new Date(year, 6 , 21 - 1, hour);
+        var initialDate = new Date(year, 6, 21, hour);
+        var endDate = new Date(year, 31 , 1, 23);
 
         var workdays = (function(start, end) {
             for(var arr=[],dt=new Date(start); dt<=new Date(end); dt.setDate(dt.getDate()+1)){
