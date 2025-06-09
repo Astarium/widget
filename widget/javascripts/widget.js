@@ -144,15 +144,15 @@ var KoleoWidget = {
         var day = today.getDate();
         var hour = today.getHours();
 
-        var startDate = new Date(year, 5 , 21 - 1, hour);
-        var initialDate = new Date(year, 5, 21, hour);
+        var startDate = new Date(year, 5 , 19 - 1, hour);
+        var initialDate = new Date(year, 5, 19, hour);
         var endDate = new Date(year, 7, 31, 23);
 
         var workdays = (function(start, end) {
             for(var arr=[],dt=new Date(start); dt<=new Date(end); dt.setDate(dt.getDate()+1)){
                 var d = new Date(dt)
 
-                if (d.getDay() === 0 || d.getDay() === 6 || (d.getDate() === 15 && d.getMonth() === 7)) {
+                if (d.getDay() === 0 || d.getDay() === 6 || (d.getDate() === 15 && d.getMonth() === 7) || (d.getDate() === 19 && d.getMonth() === 5)) {
                     continue;
                 }
                 arr.push(new Date(dt));
