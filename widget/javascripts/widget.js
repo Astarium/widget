@@ -144,8 +144,8 @@ var KoleoWidget = {
         var day = today.getDate();
         var hour = today.getHours();
 
-        var startDate = new Date(year, 5 , 19 - 1, hour);
-        var initialDate = new Date(year, 5, 19, hour);
+        var startDate = new Date(year, 5 , 18 - 1, hour);
+        var initialDate = new Date(year, 5, 18, hour);
         var endDate = new Date(year, 7, 31, 23);
 
         var workdays = (function(start, end) {
@@ -153,6 +153,7 @@ var KoleoWidget = {
                 var d = new Date(dt)
 
                 if (d.getDay() === 0 || d.getDay() === 6 || (d.getDate() === 15 && d.getMonth() === 7) || (d.getDate() === 19 && d.getMonth() === 5)) {
+                    console.log(d + "day: " + d.getDay() + " month: " + d.getMonth());
                     continue;
                 }
                 arr.push(new Date(dt));
@@ -163,6 +164,8 @@ var KoleoWidget = {
         function nearestWeekendFrom(date) {
             if (date.getMonth() === 7 && (date.getDate() === 14 || date.getDate() === 15)) {
                 return new Date(date.getFullYear(), 7, 15);
+            } else if (date.getMonth() === 5 && date.getDate() < 20) {
+                return new Date(date.getFullYear(), 5, 19);
             } else {
                 return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (date.getDay() === 0 ? 0 : 6 - date.getDay()))
             }
