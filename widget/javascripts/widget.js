@@ -49,7 +49,7 @@ var KoleoWidget = {
             var koleoDate = day + '-' + month + '-' + year + '_' + hour + ':00';
 
             var selectedCarriers = 'KD';
-            console.log('https://koleo.pl/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '?brands='+ selectedCarriers + '&utm_medium=widget&utm_source=' + window.location.hostname)
+            window.location = 'https://koleo.pl/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '?brands='+ selectedCarriers + '&utm_medium=widget&utm_source=' + window.location.hostname
         });
     },
 
