@@ -44,12 +44,12 @@ var KoleoWidget = {
             var day = ('0' + date.getDate()).slice(-2);
             var month = ('0' + (date.getMonth() + 1)).slice(-2);
             var year = date.getFullYear();
-            var hour = ('0' + date.getUTCHours()).slice(-2);
+            var hour = 6;
 
             var koleoDate = day + '-' + month + '-' + year + '_' + hour + ':00';
 
-            var selectedCarriers = 'all/' + 'KD' + '/closed';
-            window.location = 'https://koleo.pl/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '/'+ selectedCarriers + '?utm_medium=widget&utm_source=' + window.location.hostname;
+            var selectedCarriers = 'KD';
+            console.log('https://koleo.pl/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '?brands='+ selectedCarriers + '&utm_medium=widget&utm_source=' + window.location.hostname)
         });
     },
 
@@ -137,23 +137,23 @@ var KoleoWidget = {
     },
 
     bindDatePicker: function(selector) {
+        const whitelist = [
+            new Date(2025, 5, 19),
+            new Date(2025, 7, 15),
+        ]
         var dateInput = $(selector).find('.date');
         var today = new Date();
         var year = today.getFullYear();
-        var month = today.getMonth();
-        var day = today.getDate();
-        var hour = today.getHours();
 
-        var startDate = new Date(year, 5 , 18 - 1, hour);
-        var initialDate = new Date(year, 5, 18, hour);
+        var startDate = new Date(year, 5 , 19);
+        var initialDate = new Date();
         var endDate = new Date(year, 7, 31, 23);
 
         var workdays = (function(start, end) {
             for(var arr=[],dt=new Date(start); dt<=new Date(end); dt.setDate(dt.getDate()+1)){
                 var d = new Date(dt)
 
-                if (d.getDay() === 0 || d.getDay() === 6 || (d.getDate() === 15 && d.getMonth() === 7) || (d.getDate() === 19 && d.getMonth() === 5)) {
-                    console.log(d + "day: " + d.getDay() + " month: " + d.getMonth());
+                if (d.getDay() === 0 || d.getDay() === 6) {
                     continue;
                 }
                 arr.push(new Date(dt));
@@ -161,26 +161,50 @@ var KoleoWidget = {
             return arr;
         })(startDate, endDate);
 
+        function formatDisabledDate(d) {
+            return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`
+        }
+
+        function isWhitelistedDate(date) {
+            return whitelist.some(d =>
+                d.getFullYear() === date.getFullYear() &&
+                d.getMonth() === date.getMonth() &&
+                d.getDate() === date.getDate()
+            )
+        }
+
         function nearestWeekendFrom(date) {
-            if (date.getMonth() === 7 && (date.getDate() === 14 || date.getDate() === 15)) {
-                return new Date(date.getFullYear(), 7, 15);
-            } else if (date.getMonth() === 5 && date.getDate() < 20) {
-                return new Date(date.getFullYear(), 5, 19);
-            } else {
-                return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (date.getDay() === 0 ? 0 : 6 - date.getDay()))
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (date.getDay() === 0 ? 0 : 6 - date.getDay()))
+        }
+
+        function nearestWhitelistedDateFrom(date) {
+            const whitelistTimestamps = whitelist.map(d => d.valueOf()).sort()
+            const dateTimestamp = date.valueOf()
+            let next
+
+            for (const d of whitelistTimestamps) {
+                if (dateTimestamp <= d) {
+                    next = d
+                }
             }
+
+            return new Date(next)
+        }
+
+        function nearestWeekendOrWhitelistedDateFrom(date) {
+            return new Date([nearestWeekendFrom(date), nearestWhitelistedDateFrom(date)].map(d => d.valueOf()).sort()[0])
         }
 
         dateInput.fdatepicker({
-            initialDate: nearestWeekendFrom(initialDate),
+            initialDate: nearestWeekendOrWhitelistedDateFrom(initialDate),
             format: 'dd-mm-yyyy',
             language: 'pl',
             weekStart: 1,
             minView: 'month',
             minView: 'month',
-            startDate: nearestWeekendFrom(startDate),
+            startDate: nearestWeekendOrWhitelistedDateFrom(startDate),
             endDate: endDate,
-            datesDisabled: workdays.map(d => `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`),
+            datesDisabled: workdays.filter((d) => !isWhitelistedDate(d)).map(formatDisabledDate),
         });
     },
 
