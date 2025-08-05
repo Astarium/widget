@@ -41,6 +41,7 @@ var KoleoWidget = {
             var formattedDate = that.formatDate($(selector).find('.date').val());
             var date = new Date(formattedDate);
 
+            if (!startStation || !endStation) return
             if (isNaN(date.valueOf())) {
                 date = new Date();
             }
@@ -52,9 +53,16 @@ var KoleoWidget = {
 
             var koleoDate = day + '-' + month + '-' + year + '_' + hour + ':00';
 
-            var brands = $(selector).data('brands');
-            var selectedCarriers = 'all/' + (brands ? brands + '--' + brands : 'all') + '/closed';
-            window.location = 'https://koleo.pl/rozklad-pkp/' + startStation + '/' + endStation + '/' + koleoDate + '/'+ selectedCarriers + '?utm_medium=widget&utm_source=' + window.location.hostname;
+            const brands = $(selector).data('brands');
+            const target = $(selector).data('target');
+            const query = new URLSearchParams({
+                utm_medium: 'widget',
+                utm_source: window.location.hostname,
+                ...(brands ? { brands } : {})
+            })
+            const url = new URL(`/rozklad-pkp/${startStation}/${endStation}/${koleoDate}?${query.toString()}`, 'https://koleo.pl') 
+
+            window.open(url, target === '_blank' ? '_blank' : '_self');
         });
     },
 
@@ -98,10 +106,10 @@ var KoleoWidget = {
     },
 
     addStyles: function() {
-        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/widget.css` });
-        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/autocomplete.css` });
-        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/awesomecomplete.css` });
-        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${KOLEO_BASE_URL || ''}/widget/stylesheets/foundation-datepicker.css` });
+        var cssLink = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/widget.css` });
+        var cssLink2 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/autocomplete.css` });
+        var cssLink3 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/awesomecomplete.css` });
+        var cssLink4 = $("<link>", { rel: "stylesheet", type: "text/css", href: `${window.KOLEO_BASE_URL || ''}/widget/stylesheets/foundation-datepicker.css` });
         var cssLink5 = $("<link>", { rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family=Lato" });
 
         cssLink.appendTo('head');
