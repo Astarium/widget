@@ -43,6 +43,14 @@ Dostępne wartości to:
 ARRIVARP-EIC-EIP-IC-IR-REG-KM-KML-KS-KW-LKA-LS-MR-RE-SKMT-SKM-TLK-WKD-KD
 ```
 
+# Otwieranie w nowym oknie
+
+Domyślnie widget otiwera wyszukiwarkę w tym samym oknie. Można to zmienić na otwieranie w nowej karcie, dodając `data-target="_blank"`.
+
+```
+<div class="koleo-widget-container" data-target="_blank"></div>
+```
+
 # Licencja
 
 Wykorzystanie widgetu na stronie wymaga pisemnej zgody KOLEO, zgłoszenie proszę wysłać na adres: widget@koleo.pl
