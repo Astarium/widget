@@ -54,4 +54,4 @@ Domyślnie widget otiwera wyszukiwarkę w tym samym oknie. Można to zmienić na
 # Licencja
 
 Wykorzystanie widgetu na stronie wymaga pisemnej zgody KOLEO, zgłoszenie proszę wysłać na adres: widget@koleo.pl
-Copyright © 2015-2020 Astarium. Wszelkie prawa zastrzeżone. 
+Copyright © 2015-2025 Astarium. Wszelkie prawa zastrzeżone. 
